@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { BriefcaseBusiness, Code2, ExternalLink, FileText, GitFork, Mail, Plus } from "lucide-react";
+import { BriefcaseBusiness, Code2, Download, ExternalLink, GitFork, Mail, Plus } from "lucide-react";
 import { Header } from "../components/header";
 import PaperCrumple from "../components/PaperCrumple";
 import { SectionMotion } from "../components/section-motion";
@@ -45,7 +45,7 @@ function SelectedWork() {
         <article className={`project project--${id}`} key={id} aria-labelledby={`${id}-heading`} data-reveal>
           <div className="project-copy">
             <p className="eyebrow">{category}</p>
-            <h3 id={`${id}-heading`}>{name}</h3>
+            <h3 id={`${id}-heading`} tabIndex={-1}>{name}</h3>
             <p className="project-description">{description}</p>
             {url && <a className="text-link" href={url}>Visit project <ExternalLink size={14} aria-hidden="true" /></a>}
           </div>
@@ -76,7 +76,7 @@ export default function Home() {
   return (
     <>
       <a href="#main" className="skip-link">Skip to content</a>
-      <div id="top"><Header /></div>
+      <div className="sticky-header"><Header /></div>
       <main id="main" tabIndex={-1}>
         <section className="shell hero" aria-labelledby="hero-heading">
           <div className="hero-profile">
@@ -95,8 +95,8 @@ export default function Home() {
               <li><a href={person.linkedin}><BriefcaseBusiness size={16} aria-hidden="true" /> LinkedIn</a></li>
               <li><a href={`mailto:${person.email}`}><Mail size={16} aria-hidden="true" /> Email</a></li>
             </ul>
-            <a className="hero-resume" href="https://drive.google.com/file/d/1LZXXr4OysZ5X3mdw7rO_RYE3yfySw1TQ/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="View résumé PDF on Google Drive (opens in a new tab)">
-              <FileText size={16} aria-hidden="true" /> Résumé <span aria-hidden="true">PDF</span>
+            <a className="hero-resume" href="https://drive.google.com/file/d/1LZXXr4OysZ5X3mdw7rO_RYE3yfySw1TQ/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="View résumé (opens in a new tab)">
+              <Download size={16} aria-hidden="true" /> Résumé
             </a>
           </div>
         </section>
@@ -106,12 +106,12 @@ export default function Home() {
         <section id="expertise" tabIndex={-1} className="shell section" aria-labelledby="expertise-heading">
           <div className="section-heading" data-reveal><h2 id="expertise-heading">Technical expertise</h2></div>
           <dl className="expertise-list">
-            {expertise.map(([category, skills]) => (
+            {expertise.map(([category, skills], group) => (
               <div key={category} data-reveal>
                 <dt>{category}</dt>
                 <dd>
-                  <ul>{skills.map((skill) => (
-                    <li key={skill}>
+                  <ul>{skills.map((skill, index) => (
+                    <li id={`skill-${group}-${index}`} key={skill} tabIndex={-1}>
                       {skillLogos[skill] ? (
                         <Image
                           className="skill-logo"
@@ -143,7 +143,7 @@ export default function Home() {
         <section id="about" tabIndex={-1} className="shell section about" aria-labelledby="about-heading">
           <div className="section-heading" data-reveal><h2 id="about-heading">About me</h2></div>
           <p className="about-copy" data-reveal>{person.about}</p>
-          <div className="education" data-reveal>
+          <div id="education" className="education" tabIndex={-1} data-reveal>
             <h3 className="eyebrow">Education</h3>
             <div><p className="degree">{education.degree}</p><p>{education.institution}</p></div>
             <div className="record-meta"><p>{education.dates}</p><p>{education.location}</p></div>

@@ -58,7 +58,7 @@ export const projects: Project[] = [
       { title: "Trade events and reconciliation", text: "Used WebSockets, Redis, and BullMQ for trade telemetry and admin alerts. Built wallet audit trails and reconciliation workers to validate deposit and withdrawal transitions." },
     ],
     technologies: ["Next.js", "NestJS", "MySQL", "Prisma", "Redis", "BullMQ", "LeanX", "Sumsub", "Google Meet API", "Cloudflare Turnstile"],
-    diagram: { label: "Payment reconciliation", nodes: ["LeanX webhook", "Financial ledger", "BullMQ worker"] },
+    diagram: { label: "Multi-tier brokerage platform", nodes: ["CRM & trading portal", "IB commissions & wallet ledger", "KYC, payments & trade events"] },
     url: "https://www.eonefx.com/",
   },
   {

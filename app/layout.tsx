@@ -34,7 +34,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400..800;1,400..800&amp;display=swap" />
         <script dangerouslySetInnerHTML={{ __html: initializeTheme }} />
       </head>
-      <body>{children}</body>
+      <body id="top">{children}</body>
     </html>
   );
 }
